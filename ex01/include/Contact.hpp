@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:15:04 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/05 12:01:55 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/05 12:05:17 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ class Contact {
 		);
 		void		display_full(void);
 		void		display_less(int i);
-		std::string	get_first_name(void);
-		std::string	get_last_name(void);
-		std::string	get_nickname(void);
 };
 
 #endif

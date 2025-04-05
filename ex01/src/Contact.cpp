@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:15:31 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/05 12:03:31 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/05 12:05:10 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Contact.hpp"
@@ -65,16 +65,4 @@ void	Contact::display_less(int i) {
 	print_column(Contact::_nickname);
 	std::cout << std::endl;
 
-}
-
-std::string	Contact::get_first_name(void) {
-	return (_first_name);
-}
-
-std::string	Contact::get_last_name(void) {
-	return (_last_name);
-}
-
-std::string	Contact::get_nickname(void) {
-	return (_nickname);
 }

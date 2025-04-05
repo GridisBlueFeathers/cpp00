@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:20:08 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/05 12:03:44 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/05 12:07:50 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Contact.hpp"
@@ -16,8 +16,9 @@
 int	main()
 {
 	PhoneBook	book;
-	Contact contact("0123456788", "hey", "3", "4", "5");
+	Contact contact;
 	contact.display_less(1);
+	contact.display_full();
 
 	/*std::cout << "hello" << std::endl;
 	book.add_contact(&contact);
