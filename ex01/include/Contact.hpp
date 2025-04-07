@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:15:04 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/05 12:05:17 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/07 09:37:33 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ class Contact {
 			std::string phone_number,
 			std::string secret
 		);
+		void		operator=(Contact contact);
+		void		set_first_name(std::string str);
+		void		set_last_name(std::string str);
+		void		set_nickname(std::string str);
+		void		set_phone_number(std::string str);
+		void		set_secret(std::string str);
 		void		display_full(void);
 		void		display_less(int i);
 };

@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:15:31 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/05 12:05:10 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/07 09:40:21 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Contact.hpp"
@@ -32,6 +32,35 @@ Contact::Contact() :
 	_phone_number("+10000000000"),
 	_secret("Nobody knows who he is") {}
 
+
+void	Contact::operator=(Contact contact) {
+	_first_name = contact._first_name;
+	_last_name = contact._last_name;
+	_nickname = contact._nickname;
+	_phone_number = contact._phone_number;
+	_secret = contact._secret;
+}
+
+void	Contact::set_first_name(std::string str) {
+	_first_name = str;
+}
+
+void	Contact::set_last_name(std::string str) {
+	_last_name = str;
+}
+
+void	Contact::set_nickname(std::string str) {
+	_nickname = str;
+}
+
+void	Contact::set_phone_number(std::string str) {
+	_phone_number = str;
+}
+
+void	Contact::set_secret(std::string str) {
+	_secret = str;
+}
+
 void Contact::display_full(void) {
 	std::cout << Contact::_first_name << std::endl;
 	std::cout << Contact::_last_name << std::endl;
@@ -48,7 +77,6 @@ static void	print_column(std::string str)
 	else
 		std::cout << std::setw(10) << str;
 	std::cout << "|";
-
 }
 
 static void print_column(int i)
@@ -64,5 +92,4 @@ void	Contact::display_less(int i) {
 	print_column(Contact::_last_name);
 	print_column(Contact::_nickname);
 	std::cout << std::endl;
-
 }
