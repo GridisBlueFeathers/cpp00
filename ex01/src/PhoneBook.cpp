@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:17:12 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/07 12:57:59 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:32:07 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "PhoneBook.hpp"
@@ -76,6 +76,7 @@ void	PhoneBook::list_contacts() {
 	}
 	std::cout << "Input index of a contact to display: ";
 	std::cin >> i;
+	std::cin.ignore();
 	std::cout << i << std::endl;
 	if (i < 0 || i > _contacts_amount - 1) {
 		std::cerr << "Wrong index";
