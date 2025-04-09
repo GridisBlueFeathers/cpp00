@@ -6,11 +6,10 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:20:08 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/02 13:49:52 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/09 08:43:23 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <iostream>
-#include <cctype>
 
 int	main(int argc, char *argv[])
 {
