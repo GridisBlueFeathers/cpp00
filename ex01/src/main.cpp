@@ -6,29 +6,27 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:20:08 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/09 09:16:41 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/21 19:09:01 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "PhoneBook.hpp"
 #include <iostream>
-#include <limits>
 
 int	main()
 {
 	std::string	input;
 	PhoneBook	book;
 
-	while (true) {
+	while (std::cin) {
 		std::cout << "ADD, SEARCH or EXIT: ";
-		std::cin >> input;
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		if (input == "ADD" && !book.add_contact())
+		if (!std::getline(std::cin, input))
+			return (0);
+		if (input == "ADD")
+			book.add_contact();
+		if (input == "SEARCH")
+			book.list_contacts();
+		if (input == "EXIT")
 			break ;
-		if (input == "SEARCH" && !book.list_contacts())
-			break ;
-		if (input == "EXIT" || input == "")
-			break ;
-		input = "";
 	}
 	return (0);
 }

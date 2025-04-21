@@ -6,10 +6,11 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:15:31 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/21 13:08:59 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/21 19:21:40 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Contact.hpp"
+#include <cctype>
 #include <iostream>
 #include <iomanip>
 
@@ -41,27 +42,80 @@ void	Contact::operator=(Contact contact) {
 	_secret = contact._secret;
 }
 
-void	Contact::set_first_name(std::string str) {
+bool	Contact::set_first_name(std::string &str) {
+	if (!str.length()) {
+		std::cerr << "Contacts can't have empty fields" << std::endl;
+		return (false);
+	}
+	if (str.length() > 100) {
+		std::cerr << "That's way too long of a first name" << std::endl;
+		return (false);
+	}
 	_first_name = str;
+	return (true);
 }
 
-void	Contact::set_last_name(std::string str) {
+bool	Contact::set_last_name(std::string &str) {
+	if (!str.length()) {
+		std::cerr << "Contacts can't have empty fields" << std::endl;
+		return (false);
+	}
+	if (str.length() > 100) {
+		std::cerr << "That's way too long of a last name" << std::endl;
+		return (false);
+	}
 	_last_name = str;
+	return (true);
 }
 
-void	Contact::set_nickname(std::string str) {
+bool	Contact::set_nickname(std::string &str) {
+	if (!str.length()) {
+		std::cerr << "Contacts can't have empty fields" << std::endl;
+		return (false);
+	}
+	if (str.length() > 100) {
+		std::cerr << "That's way too long of a nickname" << std::endl;
+		return (false);
+	}
 	_nickname = str;
+	return (true);
 }
 
-void	Contact::set_phone_number(std::string str) {
+bool	Contact::set_phone_number(std::string &str) {
+	unsigned long i = 0;
+	if (!str.length()) {
+		std::cerr << "Contacts can't have empty fields" << std::endl;
+		return (false);
+	}
+	if (str.length() > 15) {
+		std::cerr << "That's way too long of a phone number" << std::endl;
+		return (false);
+	}
+	while (i < str.length()) {
+		if (!std::isdigit(str[i])) {
+			std::cerr << "Phone number should contain only digits" << std::endl;
+			return (false);
+		}
+		i++;
+	}
 	_phone_number = str;
+	return (true);
 }
 
-void	Contact::set_secret(std::string str) {
+bool	Contact::set_secret(std::string &str) {
+	if (!str.length()) {
+		std::cerr << "Contacts can't have empty fields" << std::endl;
+		return (false);
+	}
+	if (str.length() > 100) {
+		std::cerr << "That's way too long of a darkest secret" << std::endl;
+		return (false);
+	}
 	_secret = str;
+	return (true);
 }
 
-void Contact::display_full(void) {
+void Contact::display_full(void) const {
 	std::cout << "First name: " << Contact::_first_name << std::endl;
 	std::cout << "Last name: " << Contact::_last_name << std::endl;
 	std::cout << "Nickname: " << Contact::_nickname << std::endl;
@@ -84,7 +138,7 @@ static void print_column(int i) {
 	std::cout << "|";
 }
 
-void	Contact::display_less(int i) {
+void	Contact::display_less(int i) const {
 	print_column(i);
 	print_column(Contact::_first_name);
 	print_column(Contact::_last_name);

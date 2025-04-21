@@ -6,25 +6,27 @@
 #    By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 13:10:05 by svereten          #+#    #+#              #
-#    Updated: 2025/04/21 13:17:25 by svereten         ###   ########.fr        #
+#    Updated: 2025/04/21 19:24:32 by svereten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = phonebook
 
 CXX = c++
 
-CXXFLAGS = -Wall -Werror -Wextra -std=c++98
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -MMD -MP
 
 INCLUDE = -I./include
 
 SRC_DIR = src
 OBJ_DIR = obj
+DEP_DIR = dep
 
 FILES = main \
 		Contact \
 		PhoneBook \
 
 OBJS = ${FILES:%=${OBJ_DIR}/%.o}
+DEPS = ${FILES:%=${OBJ_DIR}/%.d}
 
 OBJ_DIRS = ${sort ${dir ${OBJS}}}
 
@@ -39,6 +41,9 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.cpp | ${OBJ_DIRS}
 ${OBJ_DIRS}:
 	mkdir -p $@
 
+${DEP_DIRS}:
+	mkdir -p $@
+
 clean:
 	rm -rf ${OBJ_DIR}
 
@@ -47,10 +52,12 @@ fclean: clean
 
 re: fclean all
 
+-include ${DEPS}
+
 run: ${NAME}
 	./${NAME}
 
 valgrind: ${NAME}
 	valgrind ./${NAME}
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re run valgrind

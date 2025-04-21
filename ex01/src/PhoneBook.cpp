@@ -6,13 +6,12 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:17:12 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/21 13:07:06 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/21 18:37:26 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "PhoneBook.hpp"
 #include <cstdio>
 #include <iostream>
-#include <limits>
 #include <ios>
 #include <iomanip>
 
@@ -21,58 +20,54 @@ PhoneBook::PhoneBook(void) :
 	_contacts_amount(0),
 	_oldest_idx(0) {}
 
-static bool	get_field(std::string *field, std::string label) {
+static bool	get_field(std::string &field, std::string label) {
 	std::string input;
 
 	std::cout << label;
-	std::cin >> input;
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	if (!input.length()) {
-		std::cerr << std::endl << "Contacts can't have empty fields" << std::endl;
+	if (!std::getline(std::cin, input))
 		return (false);
-	}
-	*field = input;
+	field = input;
 	return (true);
 }
 
-bool	PhoneBook::add_contact(void) {
+void	PhoneBook::add_contact(void) {
 	Contact		new_contact;
 	std::string	input;
 
-	if (!get_field(&input, "First name: "))
-		return (false);
-	new_contact.set_first_name(input);
-	if (!get_field(&input, "Last name: "))
-		return (false);
-	new_contact.set_last_name(input);
-	if (!get_field(&input, "Nickname: "))
-		return (false);
-	new_contact.set_nickname(input);
-	if (!get_field(&input, "Phone number: "))
-		return (false);
-	new_contact.set_phone_number(input);
-	if (!get_field(&input, "Darkest secret: "))
-		return (false);
-	new_contact.set_secret(input);
+	if (!get_field(input, "First name: ")
+		|| !new_contact.set_first_name(input))
+		return ;
+	if (!get_field(input, "Last name: ")
+		|| !new_contact.set_last_name(input))
+		return ;
+	if (!get_field(input, "Nickname: ")
+		|| !new_contact.set_nickname(input))
+		return ;
+	if (!get_field(input, "Phone number: ")
+		|| !new_contact.set_phone_number(input))
+		return ;
+	if (!get_field(input, "Darkest secret: ")
+		|| !new_contact.set_secret(input))
+		return ;
 	if (_contacts_amount == 8) {
 		_book[_oldest_idx] = new_contact;
 		_oldest_idx++;
 		if (_oldest_idx == 8)
 			_oldest_idx = 0;
-		return (true);
+		return ;
 	}
 	_book[_contacts_amount] = new_contact;
 	_contacts_amount++;
-	return (true);
+	return ;
 }
 
-bool	PhoneBook::list_contacts() {
-	int		i;
-	char	c;
+void	PhoneBook::list_contacts() {
+	int			i;
+	std::string	intput;
 
 	if (!_contacts_amount) {
 		std::cout << "Book has no contacts" << std::endl;
-		return (true);
+		return ;
 	}
 	std::cout.flags(std::ios::right);
 	std::cout << std::setw(10) << "Index" << "|";
@@ -86,15 +81,17 @@ bool	PhoneBook::list_contacts() {
 		i++;
 	}
 	std::cout << "Input index of a contact to display: ";
-	c = std::getchar();
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	if (c == -1)
-		return (false);
-	c = c - '0';
-	if (c < 0 || c > 7) {
-		std::cerr << "Wrong index" << std::endl;
-		return (true);
+	if (!std::getline(std::cin, intput))
+		return ;
+	if (intput.length() != 1) {
+		std::cerr << "Wrong input" << std::endl;
+		return ;
 	}
-	_book[(int)c].display_full();
-	return (true);
+	i = intput[0] - '0';
+	if (i < 0 || i >= _contacts_amount) {
+		std::cerr << "Wrong index" << std::endl;
+		return ;
+	}
+	_book[i].display_full();
+	return ;
 }
