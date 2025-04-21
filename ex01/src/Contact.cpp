@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:15:31 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/08 12:14:11 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/21 13:08:59 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Contact.hpp"
@@ -72,7 +72,7 @@ void Contact::display_full(void) {
 static void	print_column(std::string str) {
 	std::cout.flags(std::ios::right);
 	if (str.length() > 10)
-		std::cout << std::setw(10) << str.substr(0, 9) << ".";
+		std::cout << str.substr(0, 9) << ".";
 	else
 		std::cout << std::setw(10) << str;
 	std::cout << "|";

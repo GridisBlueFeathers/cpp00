@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:17:12 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/09 09:16:51 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/21 13:07:06 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "PhoneBook.hpp"
@@ -14,6 +14,7 @@
 #include <iostream>
 #include <limits>
 #include <ios>
+#include <iomanip>
 
 PhoneBook::PhoneBook(void) :
 	_book(),
@@ -73,6 +74,12 @@ bool	PhoneBook::list_contacts() {
 		std::cout << "Book has no contacts" << std::endl;
 		return (true);
 	}
+	std::cout.flags(std::ios::right);
+	std::cout << std::setw(10) << "Index" << "|";
+	std::cout << std::setw(10) << "First name" << "|";
+	std::cout << std::setw(10) << "Last name" << "|";
+	std::cout << std::setw(10) << "Nickname" << "|";
+	std::cout << std::endl;
 	i = 0;
 	while (i < _contacts_amount) {
 		_book[i].display_less(i);
