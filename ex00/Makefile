@@ -6,7 +6,7 @@
 #    By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 13:10:05 by svereten          #+#    #+#              #
-#    Updated: 2025/04/02 13:34:46 by svereten         ###   ########.fr        #
+#    Updated: 2025/04/21 13:17:03 by svereten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = megaphone
@@ -42,7 +42,7 @@ fclean: clean
 
 re: fclean all
 
-run: re
+run: ${NAME}
 	./${NAME} ${ARGS}
 
 .PHONY: all clean fclean re

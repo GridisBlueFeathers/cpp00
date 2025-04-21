@@ -6,7 +6,7 @@
 #    By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 13:10:05 by svereten          #+#    #+#              #
-#    Updated: 2025/04/09 08:56:46 by svereten         ###   ########.fr        #
+#    Updated: 2025/04/21 13:17:25 by svereten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = phonebook
@@ -47,10 +47,10 @@ fclean: clean
 
 re: fclean all
 
-run: re
-	./${NAME} ${ARGS}
+run: ${NAME}
+	./${NAME}
 
-valgrind: re
-	valgrind ./${NAME} ${ARGS}
+valgrind: ${NAME}
+	valgrind ./${NAME}
 
 .PHONY: all clean fclean re
