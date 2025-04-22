@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:20:08 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/09 08:43:23 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:41:04 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <iostream>
@@ -27,7 +27,7 @@ int	main(int argc, char *argv[])
 		j = 0;
 		while (argv[i][j])
 		{
-			std::cout << (unsigned char)std::toupper(argv[i][j]);
+			std::cout << static_cast<unsigned char>(std::toupper(argv[i][j]));
 			j++;
 		}
 		i++;
