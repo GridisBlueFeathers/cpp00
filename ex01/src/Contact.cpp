@@ -6,13 +6,14 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:15:31 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/21 19:21:40 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:33:59 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Contact.hpp"
 #include <cctype>
 #include <iostream>
 #include <iomanip>
+#include <string>
 
 Contact::Contact(
 	std::string first_name,
@@ -123,12 +124,57 @@ void Contact::display_full(void) const {
 	std::cout << "Darkest secret: " << Contact::_secret << std::endl;
 }
 
+static size_t	utf8_strlen(std::string& str)
+{
+	int		c;
+	int		i = 0;
+	int		len = str.length();
+	size_t	res = 0;
+
+	while (i < len)
+    {
+        c = static_cast<unsigned char>(str[i]);
+        if      (c>=0   && c<=127) i+=0;
+        else if ((c & 0b11100000) == 0b11000000) i+=1;
+        else if ((c & 0b11110000) == 0b11100000) i+=2;
+        else if ((c & 0b11111000) == 0b11110000) i+=3;
+        else return 0;
+		i++;
+		res++;
+    }
+    return res;
+}
+static size_t	bytes_len_of_first_ten(std::string& str)
+{
+	int		c;
+	size_t	i = 0;
+	int		len = str.length();
+	size_t	utf_len = 0;
+
+	while (utf_len != 9 && i < len)
+    {
+        c = static_cast<unsigned char>(str[i]);
+        if      (c>=0   && c<=127) i+=0;
+        else if ((c & 0b11100000) == 0b11000000) i+=1;
+        else if ((c & 0b11110000) == 0b11100000) i+=2;
+        else if ((c & 0b11111000) == 0b11110000) i+=3;
+        else return 0;
+		i++;
+		utf_len++;
+    }
+    return i;
+}
+
 static void	print_column(std::string str) {
+	size_t	len = str.length();
+	size_t	utf8_len = utf8_strlen(str);
+	size_t	len_diff = len - utf8_len;
+
 	std::cout.flags(std::ios::right);
-	if (str.length() > 10)
-		std::cout << str.substr(0, 9) << ".";
+	if (utf8_len > 10)
+		std::cout << str.substr(0, bytes_len_of_first_ten(str)) << ".";
 	else
-		std::cout << std::setw(10) << str;
+		std::cout << std::setw(10 + len_diff) << str;
 	std::cout << "|";
 }
 
