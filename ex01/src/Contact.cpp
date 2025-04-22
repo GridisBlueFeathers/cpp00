@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:15:31 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/22 12:33:59 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:38:59 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Contact.hpp"
@@ -148,7 +148,7 @@ static size_t	bytes_len_of_first_ten(std::string& str)
 {
 	int		c;
 	size_t	i = 0;
-	int		len = str.length();
+	size_t	len = str.length();
 	size_t	utf_len = 0;
 
 	while (utf_len != 9 && i < len)
