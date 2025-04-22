@@ -6,7 +6,7 @@
 #    By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/22 12:44:14 by svereten          #+#    #+#              #
-#    Updated: 2025/04/22 13:03:30 by svereten         ###   ########.fr        #
+#    Updated: 2025/04/22 16:46:31 by svereten         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = banksters
@@ -16,16 +16,14 @@ CXX = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -MMD -MP
 
 OBJ_DIR = obj
-DEP_DIR = dep
 
 FILES = Account \
 		tests \
 
 OBJS = ${FILES:%=${OBJ_DIR}/%.o}
-DEPS = ${FILES:%=${DEP_DIR}/%.d}
+DEPS = ${FILES:%=${OBJ_DIR}/%.d}
 
 OBJ_DIRS = ${sort ${dir ${OBJS}}}
-DEP_DIRS = ${sort ${dir ${DEPS}}}
 
 all: ${NAME}
 
@@ -38,12 +36,8 @@ ${OBJ_DIR}/%.o: %.cpp | ${OBJ_DIRS}
 ${OBJ_DIRS}:
 	mkdir -p $@
 
-${DEP_DIRS}:
-	mkdir -p $@
-
 clean:
 	rm -rf ${OBJ_DIR}
-	rm -rf ${DEP_DIR}
 
 fclean: clean
 	rm -rf ${NAME}

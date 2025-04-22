@@ -6,7 +6,7 @@
 /*   By: svereten <svereten@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 13:49:53 by svereten          #+#    #+#             */
-/*   Updated: 2025/04/22 15:39:32 by svereten         ###   ########.fr       */
+/*   Updated: 2025/04/22 16:45:40 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Account.hpp"
@@ -42,6 +42,8 @@ Account::Account(int initial_deposit) {
 	_nbAccounts++;
 	_amount = initial_deposit;
 	_totalAmount += _amount;
+	_nbDeposits = 0;
+	_nbWithdrawals = 0;
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex
 		<< ";amount:" << _amount
@@ -108,4 +110,12 @@ void	Account::_displayTimestamp(void) {
 
 	std::strftime(output, 50, "[%Y%M%d_%H%M%S] ", &datetime);
 	std::cout << output;
+}
+
+Account::Account(void) {
+	_accountIndex = _nbAccounts;
+	_nbAccounts++;
+	_amount = 0;
+	_nbDeposits = 0;
+	_nbWithdrawals = 0;
 }
